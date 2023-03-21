@@ -1,0 +1,75 @@
+<?php
+
+namespace Pdfsystems\AppliedTextilesSDK\Dtos;
+
+class Transaction
+{
+    public string $TransactionCode;
+    public string $ShipToName;
+    public string $ShipToAdd1;
+    public string $ShipToAdd2;
+    public string $ShipToCity;
+    public string $ShipToState;
+    public string $ShipToZip;
+    public string $ShipToCountry;
+    public string $ShipVia;
+    public string $ShipLevel;
+    public string $FreightAccount;
+    public string $Notes;
+    public string $ScheduledDate;
+    public string $Item;
+    public string $FinishedItem;
+    public string $Quantity;
+    public string $PONumber;
+    public string $POLine;
+    public string $CUSTPONumber;
+    public string $CustPOLine;
+    public string $SupplierPieceNumber;
+    public string $Warehouse;
+    public string $FinishRequest;
+    public string $Insurance;
+    public string $OutBoundItem;
+    public string $CompleteShipmentOnly;
+    public string $ThirdPartyBillName;
+    public string $ThirdPartyBillAdd1;
+    public string $ThirdPartyBillAdd2;
+    public string $ThirdPartyBillCity;
+    public string $ThirdPartyBillState;
+    public string $ThirdPartyBillZip;
+    public string $ThirdPartyBillCountry;
+    public string $BOL;
+    public string $FileGenerationDate;
+    public string $ATPieceNumber;
+    public string $Misc1;
+    public string $FabricWidth;
+    public string $FabricWeight;
+    public string $ItemDesc;
+    public string $FinishedItemDesc;
+    public string $TPartnerField1;
+    public string $TPartnerField2;
+    public string $TPartnerField3;
+    public string $TPartnerField4;
+    public string $TPartnerField5;
+    public string $TPartnerField6;
+    public string $TPartnerField7;
+    public string $TPartnerField8;
+    public string $TPartnerField9;
+    public string $TPartnerField10;
+    public string $TPartnerField11;
+    public string $TPartnerField12;
+    public string $TPartnerField13;
+    public string $TPartnerField14;
+    public string $TPartnerField15;
+    public string $TPartnerField16;
+    public string $TPartnerField17;
+    public string $TPartnerField18;
+    public string $Width;
+    public string $UOM;
+    public string $Color;
+    public string $Style;
+    public string $SupplierPieceStatus;
+    public string $LotNumber;
+    public string $Reserve;
+    public string $CancelShipment;
+    public string $CustomerID;
+}
