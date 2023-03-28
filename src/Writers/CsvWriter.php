@@ -4,8 +4,6 @@ namespace Pdfsystems\AppliedTextilesSDK\Writers;
 
 use Pdfsystems\AppliedTextilesSDK\Dtos\Transaction;
 use Pdfsystems\AppliedTextilesSDK\Dtos\TransactionCollection;
-use ReflectionClass;
-use ReflectionProperty;
 
 class CsvWriter implements Writer
 {

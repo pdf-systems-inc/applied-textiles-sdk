@@ -92,6 +92,7 @@ class Transaction
     public static function getProperties(): array
     {
         $reflection = new ReflectionClass(Transaction::class);
+
         return $reflection->getProperties(ReflectionProperty::IS_PUBLIC);
     }
 
