@@ -2,6 +2,7 @@
 
 namespace Pdfsystems\AppliedTextilesSDK\Dtos;
 
+use Pdfsystems\AppliedTextilesSDK\Enums\TransactionCode;
 use ReflectionClass;
 use ReflectionProperty;
 
@@ -76,12 +77,12 @@ class Transaction
     public ?string $CancelShipment = null;
     public string $CustomerID;
 
-    public function __construct(string $code, array $args = [])
+    public function __construct(TransactionCode $code, array $args = [])
     {
         $this->TransactionCode = $code;
+        unset($args['TransactionCode']);
 
         $properties = static::getPropertyNames();
-        unset($args['TransactionCode']);
         foreach ($args as $key => $value) {
             if (in_array($key, $properties)) {
                 $this->{$key} = $value;
@@ -89,6 +90,11 @@ class Transaction
         }
     }
 
+    /**
+     * Gets all the public properties of the class
+     *
+     * @return array<ReflectionProperty>
+     */
     public static function getProperties(): array
     {
         $reflection = new ReflectionClass(Transaction::class);
@@ -96,11 +102,21 @@ class Transaction
         return $reflection->getProperties(ReflectionProperty::IS_PUBLIC);
     }
 
+    /**
+     * Gets all the public property names of the class
+     *
+     * @return array<string>
+     */
     public static function getPropertyNames(): array
     {
         return array_map(fn ($property) => $property->getName(), static::getProperties());
     }
 
+    /**
+     * Gets an associative array of all the public properties of the class
+     *
+     * @return array
+     */
     public function toArray(): array
     {
         $properties = static::getPropertyNames();

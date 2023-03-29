@@ -2,12 +2,13 @@
 
 use Pdfsystems\AppliedTextilesSDK\Dtos\Transaction;
 use Pdfsystems\AppliedTextilesSDK\Dtos\TransactionCollection;
+use Pdfsystems\AppliedTextilesSDK\Enums\TransactionCode;
 use Pdfsystems\AppliedTextilesSDK\Writers\CsvWriter;
 
 it('can write csv files', function () {
     $collection = new TransactionCollection();
 
-    $collection->add(new Transaction('01', [
+    $collection->add(new Transaction(TransactionCode::RECEIVE_AND_STOCK(), [
         'Item' => '1000/01',
         'Quantity' => 5,
         'Warehouse' => 'GRR',
