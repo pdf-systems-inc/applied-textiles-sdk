@@ -3,6 +3,7 @@
 namespace Pdfsystems\AppliedTextilesSDK\Dtos;
 
 use DateTimeImmutable;
+use MyCLabs\Enum\Enum;
 use Pdfsystems\AppliedTextilesSDK\Enums\PieceStatus;
 use Pdfsystems\AppliedTextilesSDK\Enums\TransactionCode;
 use Pdfsystems\AppliedTextilesSDK\Enums\Warehouse;
@@ -125,7 +126,11 @@ class Transaction
         $properties = static::getPropertyNames();
         $array = [];
         foreach ($properties as $property) {
-            $array[$property] = $this->{$property};
+            if ($this->{$property} instanceof Enum) {
+                $array[$property] = $this->{$property}->getValue();
+            } else {
+                $array[$property] = $this->{$property};
+            }
         }
 
         return $array;
