@@ -2,6 +2,7 @@
 
 namespace Pdfsystems\AppliedTextilesSDK\Writers;
 
+use DateTimeImmutable;
 use Pdfsystems\AppliedTextilesSDK\Dtos\Transaction;
 use Pdfsystems\AppliedTextilesSDK\Dtos\TransactionCollection;
 
@@ -50,7 +51,43 @@ class CsvWriter implements Writer
     private function writeData($fh, TransactionCollection $transactions): void
     {
         foreach ($transactions as $transaction) {
-            fputcsv($fh, $transaction->toArray());
+            $this->writeTransaction($fh, $transaction);
         }
+    }
+
+    /**
+     * Writes a single transaction to the csv file
+     *
+     * @param resource $fh
+     * @param Transaction $transaction
+     * @return void
+     */
+    private function writeTransaction($fh, Transaction $transaction): void
+    {
+        fputcsv($fh, $this->mapTransactionToArray($transaction));
+    }
+
+    /**
+     * Maps a transaction to an array that can be written to a csv file
+     *
+     * @param Transaction $transaction
+     * @return array
+     */
+    private function mapTransactionToArray(Transaction $transaction): array
+    {
+        $array = [];
+
+        foreach ($transaction->toArray() as $key => $value) {
+            if (is_bool($value)) {
+                // Write boolean values as Y/N instead of 1/0
+                $array[$key] = $value ? 'Y' : 'N';
+            } elseif ($value instanceof DateTimeImmutable) {
+                $array[$key] = $value->format('m/d/Y');
+            } else {
+                $array[$key] = $value;
+            }
+        }
+
+        return $array;
     }
 }

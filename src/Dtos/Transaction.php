@@ -2,6 +2,7 @@
 
 namespace Pdfsystems\AppliedTextilesSDK\Dtos;
 
+use DateTimeImmutable;
 use Pdfsystems\AppliedTextilesSDK\Enums\PieceStatus;
 use Pdfsystems\AppliedTextilesSDK\Enums\TransactionCode;
 use Pdfsystems\AppliedTextilesSDK\Enums\Warehouse;
@@ -22,7 +23,7 @@ class Transaction
     public ?string $ShipLevel = null;
     public ?string $FreightAccount = null;
     public ?string $Notes = null;
-    public ?string $ScheduledDate = null;
+    public ?DateTimeImmutable $ScheduledDate = null;
     public string $Item;
     public ?string $FinishedItem = null;
     public float $Quantity;
@@ -33,9 +34,9 @@ class Transaction
     public ?string $SupplierPieceNumber = null;
     public Warehouse $Warehouse;
     public ?string $FinishRequest = null;
-    public ?string $Insurance = null;
+    public float $Insurance = 0;
     public ?string $OutBoundItem = null;
-    public ?string $CompleteShipmentOnly = null;
+    public ?bool $CompleteShipmentOnly = null;
     public ?string $ThirdPartyBillName = null;
     public ?string $ThirdPartyBillAdd1 = null;
     public ?string $ThirdPartyBillAdd2 = null;
@@ -44,7 +45,7 @@ class Transaction
     public ?string $ThirdPartyBillZip = null;
     public ?string $ThirdPartyBillCountry = null;
     public ?string $BOL = null;
-    public string $FileGenerationDate;
+    public DateTimeImmutable $FileGenerationDate;
     public ?string $ATPieceNumber = null;
     public ?string $Misc1 = null;
     public string $FabricWidth;
@@ -75,8 +76,8 @@ class Transaction
     public ?string $Style = null;
     public ?PieceStatus $SupplierPieceStatus = null;
     public ?string $LotNumber = null;
-    public ?string $Reserve = null;
-    public ?string $CancelShipment = null;
+    public ?bool $Reserve = null;
+    public ?bool $CancelShipment = null;
     public string $CustomerID;
 
     public function __construct(TransactionCode $code, array $args = [])
