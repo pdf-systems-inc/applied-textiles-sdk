@@ -62,6 +62,7 @@ it('can convert transactions to arrays', function () {
 it('fails to use invalid transaction DTOs', function () {
     $transaction = new Transaction(TransactionCode::RECEIVE_AND_STOCK());
     expect(fn () => $transaction->toArray())->toThrow(Error::class);
+
     try {
         $transaction->toArray();
     } catch (Error $e) {
