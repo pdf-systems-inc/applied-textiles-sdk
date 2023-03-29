@@ -3,6 +3,7 @@
 use Pdfsystems\AppliedTextilesSDK\Dtos\Transaction;
 use Pdfsystems\AppliedTextilesSDK\Dtos\TransactionCollection;
 use Pdfsystems\AppliedTextilesSDK\Enums\TransactionCode;
+use Pdfsystems\AppliedTextilesSDK\Enums\Warehouse;
 use Pdfsystems\AppliedTextilesSDK\Writers\CsvWriter;
 
 it('can write csv files', function () {
@@ -11,7 +12,7 @@ it('can write csv files', function () {
     $collection->add(new Transaction(TransactionCode::RECEIVE_AND_STOCK(), [
         'Item' => '1000/01',
         'Quantity' => 5,
-        'Warehouse' => 'GRR',
+        'Warehouse' => Warehouse::GRAND_RAPIDS(),
         'FileGenerationDate' => '2023-01-01',
         'FabricWidth' => '54',
         'ItemDesc' => 'Kensington Red',

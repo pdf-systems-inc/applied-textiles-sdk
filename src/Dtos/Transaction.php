@@ -2,7 +2,9 @@
 
 namespace Pdfsystems\AppliedTextilesSDK\Dtos;
 
+use Pdfsystems\AppliedTextilesSDK\Enums\PieceStatus;
 use Pdfsystems\AppliedTextilesSDK\Enums\TransactionCode;
+use Pdfsystems\AppliedTextilesSDK\Enums\Warehouse;
 use ReflectionClass;
 use ReflectionProperty;
 
@@ -29,7 +31,7 @@ class Transaction
     public ?string $CUSTPONumber = null;
     public ?string $CustPOLine = null;
     public ?string $SupplierPieceNumber = null;
-    public string $Warehouse;
+    public Warehouse $Warehouse;
     public ?string $FinishRequest = null;
     public ?string $Insurance = null;
     public ?string $OutBoundItem = null;
@@ -71,7 +73,7 @@ class Transaction
     public ?string $UOM = null;
     public ?string $Color = null;
     public ?string $Style = null;
-    public ?string $SupplierPieceStatus = null;
+    public ?PieceStatus $SupplierPieceStatus = null;
     public ?string $LotNumber = null;
     public ?string $Reserve = null;
     public ?string $CancelShipment = null;
