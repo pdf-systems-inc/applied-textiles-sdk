@@ -53,6 +53,7 @@ class FtpWriter extends CsvWriter
     private function getFullRemotePath(): string
     {
         $remoteFilename = uniqid() . '.csv';
+
         return "$this->remotePath/$remoteFilename";
     }
 }
