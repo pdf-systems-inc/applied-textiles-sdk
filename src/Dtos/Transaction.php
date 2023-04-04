@@ -2,7 +2,7 @@
 
 namespace Pdfsystems\AppliedTextilesSDK\Dtos;
 
-use DateTimeImmutable;
+use DateTimeInterface;
 use MyCLabs\Enum\Enum;
 use Pdfsystems\AppliedTextilesSDK\Enums\PieceStatus;
 use Pdfsystems\AppliedTextilesSDK\Enums\TransactionCode;
@@ -24,7 +24,7 @@ class Transaction
     public ?string $ShipLevel = null;
     public ?string $FreightAccount = null;
     public ?string $Notes = null;
-    public ?DateTimeImmutable $ScheduledDate = null;
+    public ?DateTimeInterface $ScheduledDate = null;
     public string $Item;
     public ?string $FinishedItem = null;
     public float $Quantity;
@@ -46,7 +46,7 @@ class Transaction
     public ?string $ThirdPartyBillZip = null;
     public ?string $ThirdPartyBillCountry = null;
     public ?string $BOL = null;
-    public DateTimeImmutable $FileGenerationDate;
+    public DateTimeInterface $FileGenerationDate;
     public ?string $ATPieceNumber = null;
     public ?string $Misc1 = null;
     public string $FabricWidth;
