@@ -13,7 +13,7 @@ class FtpWriter extends CsvWriter
     protected string $remotePath;
     protected bool $passive;
 
-    public function __construct(string $host, string $username, string $password, string $remotePath = '/', bool $passive = false)
+    public function __construct(string $username, string $password, string $host = 'ftp.applied-textiles.com', string $remotePath = '/TOAT', bool $passive = true)
     {
         parent::__construct(tempnam(sys_get_temp_dir(), 'csv'));
 
