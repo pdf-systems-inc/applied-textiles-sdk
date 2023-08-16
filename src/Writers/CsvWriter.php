@@ -2,7 +2,7 @@
 
 namespace Pdfsystems\AppliedTextilesSDK\Writers;
 
-use DateTimeImmutable;
+use DateTimeInterface;
 use Pdfsystems\AppliedTextilesSDK\Dtos\Transaction;
 use Pdfsystems\AppliedTextilesSDK\Dtos\TransactionCollection;
 use Pdfsystems\AppliedTextilesSDK\Exceptions\CsvException;
@@ -93,7 +93,7 @@ class CsvWriter implements Writer
             if (is_bool($value)) {
                 // Write boolean values as Y/N instead of 1/0
                 $array[$key] = $value ? 'Y' : 'N';
-            } elseif ($value instanceof DateTimeImmutable) {
+            } elseif ($value instanceof DateTimeInterface) {
                 $array[$key] = $value->format('m/d/Y');
             } else {
                 $array[$key] = $value;
