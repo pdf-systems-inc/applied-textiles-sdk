@@ -1,14 +1,25 @@
 # SDK for Applied Textiles
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/pdf-systems-inc/applied-textiles-sdk.svg?style=flat-square)](https://packagist.org/packages/pdf-systems-inc/applied-textiles-sdk)
 [![Tests](https://img.shields.io/github/actions/workflow/status/pdf-systems-inc/applied-textiles-sdk/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/pdf-systems-inc/applied-textiles-sdk/actions/workflows/run-tests.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/pdf-systems-inc/applied-textiles-sdk.svg?style=flat-square)](https://packagist.org/packages/pdf-systems-inc/applied-textiles-sdk)
 
 This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via composer, but first you need to add PDF's composer repository to your composer.json file:
+
+```json
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://satis.pdfsystems.com"
+        }
+    ]
+}
+```
+
+Then you can install the package:
 
 ```bash
 composer require pdf-systems-inc/applied-textiles-sdk
@@ -16,9 +27,36 @@ composer require pdf-systems-inc/applied-textiles-sdk
 
 ## Usage
 
+### Create a new transaction
 ```php
-$skeleton = new Pdfsystems\AppliedTextilesSDK();
-echo $skeleton->echoPhrase('Hello, Pdfsystems!');
+$transaction = new \Pdfsystems\AppliedTextilesSDK\Dtos\Transaction(TransactionCode::RECEIVE_AND_STOCK(), [
+    'Item' => '1000/01',
+    'Quantity' => 5,
+    'Warehouse' => Warehouse::GRAND_RAPIDS(),
+    'Insurance' => 5.5,
+    'FileGenerationDate' => new DateTimeImmutable('2023-01-31'),
+    'FabricWidth' => '54',
+    'ItemDesc' => 'Kensington Red',
+    'CustomerID' => '12345',
+    'Reserve' => true,
+    'CancelShipment' => false,
+    'CompleteShipmentOnly' => true,
+    'SupplierPieceStatus' => PieceStatus::AVAILABLE(),
+]);
+```
+
+### Create a new writer
+```php
+$writer = new \Pdfsystems\AppliedTextilesSDK\Writers\FtpWriter(
+    '{FTP_Username}',
+    '{FTP_Password}'
+);
+```
+
+### Write data to Applied Textiles
+```php
+$collection = new \Pdfsystems\AppliedTextilesSDK\Dtos\TransactionCollection([$transaction]);
+$writer->write($collection);
 ```
 
 ## Testing
