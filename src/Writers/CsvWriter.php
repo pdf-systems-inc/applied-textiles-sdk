@@ -2,7 +2,6 @@
 
 namespace Pdfsystems\AppliedTextilesSDK\Writers;
 
-use DateTimeInterface;
 use Pdfsystems\AppliedTextilesSDK\Dtos\Transaction;
 use Pdfsystems\AppliedTextilesSDK\Dtos\TransactionCollection;
 use Pdfsystems\AppliedTextilesSDK\Exceptions\CsvException;
