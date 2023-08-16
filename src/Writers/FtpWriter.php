@@ -4,7 +4,6 @@ namespace Pdfsystems\AppliedTextilesSDK\Writers;
 
 use Pdfsystems\AppliedTextilesSDK\Dtos\TransactionCollection;
 use Pdfsystems\AppliedTextilesSDK\Exceptions\FtpException;
-use RuntimeException;
 
 class FtpWriter extends CsvWriter
 {
@@ -25,10 +24,6 @@ class FtpWriter extends CsvWriter
         $this->passive = $passive;
     }
 
-    /**
-     * @inheritDoc
-     * @throws RuntimeException If the file could not be uploaded to the FTP server
-     */
     public function write(TransactionCollection $transactions): void
     {
         parent::write($transactions);
