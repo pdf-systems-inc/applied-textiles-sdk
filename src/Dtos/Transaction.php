@@ -97,7 +97,7 @@ class Transaction
     /**
      * Gets all the public properties of the class
      *
-     * @return array<ReflectionProperty>
+     * @return ReflectionProperty[]
      */
     public static function getProperties(): array
     {
@@ -109,7 +109,7 @@ class Transaction
     /**
      * Gets all the public property names of the class
      *
-     * @return array<string>
+     * @return string[]
      */
     public static function getPropertyNames(): array
     {
@@ -118,21 +118,37 @@ class Transaction
 
     /**
      * Gets an associative array of all the public properties of the class
+     * Note that some properties will be converted based to a different format based on Applied Textile's documentation
      *
      * @return array
      */
     public function toArray(): array
     {
+        // Get all the properties, which are defined above
         $properties = static::getPropertyNames();
+
+        // Initialize an empty array, which will be populated below and ultimately returned
         $array = [];
+
         foreach ($properties as $property) {
-            if ($this->{$property} instanceof Enum) {
-                $array[$property] = $this->{$property}->getValue();
+            $value = $this->{$property};
+
+            if ($value instanceof Enum) {
+                // For enumerated values, we want to get the backed value of the selected option
+                $array[$property] = $value->getValue();
+            } elseif (is_bool($value)) {
+                // Write boolean values as Y/N instead of 1/0
+                $array[$property] = $value ? 'Y' : 'N';
+            } elseif ($value instanceof DateTimeInterface) {
+                // Dates should be written in m/d/Y format based on Applied Textile's documentation
+                $array[$property] = $value->format('m/d/Y');
             } else {
-                $array[$property] = $this->{$property};
+                // Everything else should be written as-is
+                $array[$property] = $value;
             }
         }
 
+        // Return the transaction as an associative array, with any data conversions applied
         return $array;
     }
 }

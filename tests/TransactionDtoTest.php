@@ -48,13 +48,13 @@ it('can convert transactions to arrays', function () {
     $expectedValues[15] = 5.0;
     $expectedValues[21] = 'GRR';
     $expectedValues[23] = 5.5;
-    $expectedValues[25] = true;
-    $expectedValues[34] = $fileGenerationDate;
+    $expectedValues[25] = 'Y';
+    $expectedValues[34] = $fileGenerationDate->format('m/d/Y');
     $expectedValues[37] = '54';
     $expectedValues[39] = 'Kensington Red';
     $expectedValues[63] = 'A';
-    $expectedValues[65] = true;
-    $expectedValues[66] = false;
+    $expectedValues[65] = 'Y';
+    $expectedValues[66] = 'N';
     $expectedValues[67] = '12345';
     expect(array_values($array))->toBe($expectedValues);
 });

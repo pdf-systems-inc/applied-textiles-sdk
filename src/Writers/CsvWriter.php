@@ -74,32 +74,8 @@ class CsvWriter implements Writer
      */
     private function writeTransaction($fh, Transaction $transaction): void
     {
-        if (fputcsv($fh, $this->mapTransactionToArray($transaction)) === false) {
+        if (fputcsv($fh, $transaction->toArray()) === false) {
             throw new CsvException('Could not write transaction to csv file');
         }
-    }
-
-    /**
-     * Maps a transaction to an array that can be written to a csv file
-     *
-     * @param Transaction $transaction
-     * @return array
-     */
-    private function mapTransactionToArray(Transaction $transaction): array
-    {
-        $array = [];
-
-        foreach ($transaction->toArray() as $key => $value) {
-            if (is_bool($value)) {
-                // Write boolean values as Y/N instead of 1/0
-                $array[$key] = $value ? 'Y' : 'N';
-            } elseif ($value instanceof DateTimeInterface) {
-                $array[$key] = $value->format('m/d/Y');
-            } else {
-                $array[$key] = $value;
-            }
-        }
-
-        return $array;
     }
 }
