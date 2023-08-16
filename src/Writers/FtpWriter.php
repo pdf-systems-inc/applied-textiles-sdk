@@ -3,6 +3,7 @@
 namespace Pdfsystems\AppliedTextilesSDK\Writers;
 
 use Pdfsystems\AppliedTextilesSDK\Dtos\TransactionCollection;
+use Pdfsystems\AppliedTextilesSDK\Exceptions\FtpException;
 use RuntimeException;
 
 class FtpWriter extends CsvWriter
@@ -34,19 +35,19 @@ class FtpWriter extends CsvWriter
 
         $ftp = ftp_connect($this->host);
         if ($ftp === false) {
-            throw new RuntimeException('Could not connect to FTP server');
+            throw new FtpException('Could not connect to FTP server');
         }
 
         if (! ftp_login($ftp, $this->username, $this->password)) {
-            throw new RuntimeException('Could not login to FTP server');
+            throw new FtpException('Could not login to FTP server');
         }
 
         if (! ftp_pasv($ftp, $this->passive)) {
-            throw new RuntimeException('Could not set FTP passive mode');
+            throw new FtpException('Could not set FTP passive mode');
         }
 
         if (! ftp_put($ftp, $this->getFullRemotePath(), $this->path, FTP_ASCII)) {
-            throw new RuntimeException('Could not upload file to FTP server');
+            throw new FtpException('Could not upload file to FTP server');
         }
     }
 
