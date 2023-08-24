@@ -2,6 +2,7 @@
 
 namespace Pdfsystems\AppliedTextilesSDK\Dtos;
 
+use DateTimeImmutable;
 use DateTimeInterface;
 use MyCLabs\Enum\Enum;
 use ReflectionClass;
@@ -9,6 +10,44 @@ use ReflectionProperty;
 
 class DataTransferObject
 {
+    /**
+     * @throws \Exception
+     */
+    public function __construct(array $args = [])
+    {
+        foreach (static::getProperties() as $property) {
+            if (! array_key_exists($property->getName(), $args)) {
+                continue;
+            }
+
+            $propertyType = $property->getType()->getName();
+
+            /*
+             * If the property is an object type there are special considerations for instantiation
+             */
+            if (class_exists($propertyType) || interface_exists($propertyType)) {
+                $propertyClass = new ReflectionClass($propertyType);
+                $value = $args[$property->getName()];
+
+                if (is_object($value) && $propertyClass->isInstance($value)) {
+                    // If the value was provided as an object of the correct type, use it directly with no alternations
+                    $this->{$property->getName()} = $value;
+                } else {
+                    // Otherwise, the course of action we take depends on the type of object
+                    if ($propertyClass->isSubclassOf(Enum::class)) {
+                        $this->{$property->getName()} = new $propertyType($args[$property->getName()]);
+                    } elseif ($propertyClass->implementsInterface(DateTimeInterface::class)) {
+                        $this->{$property->getName()} = new DateTimeImmutable($args[$property->getName()]);
+                    } else {
+                        $this->{$property->getName()} = $args[$property->getName()];
+                    }
+                }
+            } else {
+                $this->{$property->getName()} = $args[$property->getName()];
+            }
+        }
+    }
+
     /**
      * Gets all the public properties of the class
      *

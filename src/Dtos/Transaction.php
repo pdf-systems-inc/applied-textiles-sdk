@@ -83,11 +83,6 @@ class Transaction extends DataTransferObject
         $this->TransactionCode = $code;
         unset($args['TransactionCode']);
 
-        $properties = static::getPropertyNames();
-        foreach ($args as $key => $value) {
-            if (in_array($key, $properties)) {
-                $this->{$key} = $value;
-            }
-        }
+        parent::__construct($args);
     }
 }
