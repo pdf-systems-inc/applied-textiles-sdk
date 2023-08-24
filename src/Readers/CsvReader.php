@@ -7,6 +7,7 @@ use Pdfsystems\AppliedTextilesSDK\Dtos\Inventory;
 class CsvReader implements Reader
 {
     protected string $path;
+
     public function __construct(string $path)
     {
         $this->path = $path;

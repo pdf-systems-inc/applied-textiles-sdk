@@ -3,7 +3,6 @@
 namespace Pdfsystems\AppliedTextilesSDK\Dtos;
 
 use DateTimeInterface;
-use Pdfsystems\AppliedTextilesSDK\Dtos\DataTransferObject;
 use Pdfsystems\AppliedTextilesSDK\Enums\PieceStatus;
 use Pdfsystems\AppliedTextilesSDK\Enums\Warehouse;
 
