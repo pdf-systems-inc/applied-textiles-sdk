@@ -24,9 +24,9 @@ class FtpWriter extends CsvWriter
         $this->passive = $passive;
     }
 
-    public function write(TransactionCollection $transactions): void
+    public function writeTransactions(TransactionCollection $transactions): void
     {
-        parent::write($transactions);
+        parent::writeTransactions($transactions);
 
         $ftp = ftp_connect($this->host);
         if ($ftp === false) {

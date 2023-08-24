@@ -13,5 +13,5 @@ interface Writer
      * @return void
      * @throws WriterException
      */
-    public function write(TransactionCollection $transactions): void;
+    public function writeTransactions(TransactionCollection $transactions): void;
 }

@@ -20,7 +20,7 @@ class CsvWriter implements Writer
         $this->path = $path;
     }
 
-    public function write(TransactionCollection $transactions): void
+    public function writeTransactions(TransactionCollection $transactions): void
     {
         if (($fh = fopen($this->path, 'w')) === false) {
             throw new CsvException('Could not open csv file for writing');

@@ -27,7 +27,7 @@ it('can write csv files', function () {
 
     $path = tempnam(sys_get_temp_dir(), 'csv');
     $writer = new CsvWriter($path);
-    $writer->write($collection);
+    $writer->writeTransactions($collection);
 
     $fh = fopen($path, 'r');
     $headers = fgetcsv($fh);
@@ -122,7 +122,7 @@ it('can write csv files and ignore extra fields', function () {
 
     $path = tempnam(sys_get_temp_dir(), 'csv');
     $writer = new CsvWriter($path);
-    $writer->write($collection);
+    $writer->writeTransactions($collection);
 
     $fh = fopen($path, 'r');
     $headers = fgetcsv($fh);

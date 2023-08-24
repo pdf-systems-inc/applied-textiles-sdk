@@ -56,7 +56,7 @@ $writer = new \Pdfsystems\AppliedTextilesSDK\Writers\FtpWriter(
 ### Write data to Applied Textiles
 ```php
 $collection = new \Pdfsystems\AppliedTextilesSDK\Dtos\TransactionCollection([$transaction]);
-$writer->write($collection);
+$writer->writeTransactions($collection);
 ```
 
 ## Testing
