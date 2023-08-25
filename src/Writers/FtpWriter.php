@@ -38,6 +38,10 @@ class FtpWriter extends CsvWriter
     {
         $remoteFilename = uniqid() . '.csv';
 
-        return "$this->remotePath/$remoteFilename";
+        if (empty($this->remotePath)) {
+            return $remoteFilename;
+        } else {
+            return "$this->remotePath/$remoteFilename";
+        }
     }
 }
