@@ -68,6 +68,7 @@ class FtpReader
     private function processFile(string $localPath): array
     {
         $reader = new CsvReader($localPath);
+
         return $reader->readInventory();
     }
 }
