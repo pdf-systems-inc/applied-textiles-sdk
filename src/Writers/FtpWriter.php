@@ -10,7 +10,7 @@ class FtpWriter extends CsvWriter
 {
     use UsesFtp;
 
-    public function __construct(string $username, string $password, string $host = 'ftp.applied-textiles.com', string $remotePath = '/TOAT', bool $passive = true)
+    public function __construct(string $username, string $password, string $host = 'ftp.applied-textiles.com', string $remotePath = 'TOAT', bool $passive = true)
     {
         parent::__construct(tempnam(sys_get_temp_dir(), 'csv'));
 

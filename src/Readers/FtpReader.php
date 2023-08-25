@@ -10,7 +10,7 @@ class FtpReader
 {
     use UsesFtp;
 
-    public function __construct(string $username, string $password, string $host = 'ftp.applied-textiles.com', string $remotePath = '/FROMAT', bool $passive = true)
+    public function __construct(string $username, string $password, string $host = 'ftp.applied-textiles.com', string $remotePath = 'FROMAT', bool $passive = true)
     {
         $this->host = $host;
         $this->username = $username;
