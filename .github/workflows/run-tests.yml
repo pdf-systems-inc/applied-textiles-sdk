@@ -12,9 +12,9 @@ jobs:
           - 21000-21010:21000-21010
         env:
           USERS: tests|shah3ouX
+        options: --health-cmd "netstat -lnt | grep :21 || exit 1" --health-interval 10s --health-timeout 5s --health-retries 3
     runs-on: ${{ matrix.os }}
     strategy:
-      max-parallel: 1
       fail-fast: true
       matrix:
         os: [ubuntu-latest]
