@@ -25,7 +25,7 @@ it('can upload transactions to ftp', function () {
         'SupplierPieceStatus' => PieceStatus::AVAILABLE(),
     ]));
 
-    $writer = new FtpWriter('tests', 'shah3ouX', 'localhost', '/ftp/tests', false);
+    $writer = new FtpWriter('tests', 'shah3ouX', 'localhost', '/ftp/tests', true);
     $writer->writeTransactions($collection);
 
     // If we got here without throwing an exception, we're good
