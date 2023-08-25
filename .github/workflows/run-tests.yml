@@ -6,7 +6,7 @@ jobs:
   test:
     services:
       ftp:
-        image: delfer/alpine-ftp-server
+        image: delfer/alpine-ftp-server:revert-22-master
         ports:
           - 21:21
           - 21000-21010:21000-21010
