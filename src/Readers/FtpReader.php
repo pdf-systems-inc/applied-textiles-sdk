@@ -4,6 +4,7 @@ namespace Pdfsystems\AppliedTextilesSDK\Readers;
 
 use Exception;
 use Pdfsystems\AppliedTextilesSDK\Concerns\UsesFtp;
+use Pdfsystems\AppliedTextilesSDK\Exceptions\InvalidFileException;
 
 class FtpReader
 {
@@ -36,7 +37,13 @@ class FtpReader
                 ftp_fget($ftp, $fh, $file, FTP_ASCII);
                 fclose($fh);
 
-                $inventory = array_merge($inventory, $this->processFile($localPath));
+                try {
+                    $inventory = array_merge($inventory, $this->processFile($localPath));
+                } catch (InvalidFileException $e) {
+                    // Ignore invalid files
+                } finally {
+                    unlink($localPath);
+                }
             }
         }
 
