@@ -2,16 +2,13 @@
 
 namespace Pdfsystems\AppliedTextilesSDK\Writers;
 
+use Pdfsystems\AppliedTextilesSDK\Concerns\UsesFtp;
 use Pdfsystems\AppliedTextilesSDK\Dtos\TransactionCollection;
 use Pdfsystems\AppliedTextilesSDK\Exceptions\FtpException;
 
 class FtpWriter extends CsvWriter
 {
-    protected string $host;
-    protected string $username;
-    protected string $password;
-    protected string $remotePath;
-    protected bool $passive;
+    use UsesFtp;
 
     public function __construct(string $username, string $password, string $host = 'ftp.applied-textiles.com', string $remotePath = '/TOAT', bool $passive = true)
     {
@@ -28,18 +25,7 @@ class FtpWriter extends CsvWriter
     {
         parent::writeTransactions($transactions);
 
-        $ftp = ftp_connect($this->host);
-        if ($ftp === false) {
-            throw new FtpException('Could not connect to FTP server');
-        }
-
-        if (! ftp_login($ftp, $this->username, $this->password)) {
-            throw new FtpException('Could not login to FTP server');
-        }
-
-        if (! ftp_pasv($ftp, $this->passive)) {
-            throw new FtpException('Could not set FTP passive mode');
-        }
+        $ftp = $this->getFtpConnection();
 
         if (! ftp_put($ftp, $this->getFullRemotePath(), $this->path, FTP_ASCII)) {
             throw new FtpException('Could not upload file to FTP server');

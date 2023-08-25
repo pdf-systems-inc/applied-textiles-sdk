@@ -2,7 +2,9 @@
 
 namespace Pdfsystems\AppliedTextilesSDK\Readers;
 
+use Exception;
 use Pdfsystems\AppliedTextilesSDK\Dtos\Inventory;
+use Pdfsystems\AppliedTextilesSDK\Exceptions\InvalidFileException;
 
 class CsvReader implements Reader
 {
@@ -15,11 +17,19 @@ class CsvReader implements Reader
 
     /**
      * @inheritDoc
+     * @throws Exception
      */
     public function readInventory(): array
     {
         $fh = fopen($this->path, 'r');
         $headers = fgetcsv($fh);
+
+        if ($headers === false) {
+            throw new InvalidFileException();
+        } elseif (! $this->isValidInventoryFile($headers)) {
+            throw new InvalidFileException();
+        }
+
         $inventory = [];
 
         while (! empty($row = fgetcsv($fh))) {
@@ -27,5 +37,14 @@ class CsvReader implements Reader
         }
 
         return $inventory;
+    }
+
+    /**
+     * @param array $headers
+     * @return bool
+     */
+    private function isValidInventoryFile(array $headers): bool
+    {
+        return count($headers) === 12;
     }
 }
