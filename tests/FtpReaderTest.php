@@ -11,6 +11,7 @@ it('can read csv files from FTP', function () {
     expect(ftp_login($ftp, 'tests', 'shah3ouX'))->toBeTrue();
     expect(ftp_pasv($ftp, true))->toBeTrue();
     ftp_fput($ftp, '/ftp/tests/inventory.csv', fopen('tests/Files/inventory.csv', 'r'), FTP_ASCII);
+    ftp_close($ftp);
 
     $reader = new FtpReader('tests', 'shah3ouX', 'localhost', '/ftp/tests', true);
 
