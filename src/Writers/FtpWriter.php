@@ -30,6 +30,8 @@ class FtpWriter extends CsvWriter
         if (! ftp_put($ftp, $this->getFullRemotePath(), $this->path, FTP_ASCII)) {
             throw new FtpException('Could not upload file to FTP server');
         }
+
+        ftp_close($ftp);
     }
 
     private function getFullRemotePath(): string

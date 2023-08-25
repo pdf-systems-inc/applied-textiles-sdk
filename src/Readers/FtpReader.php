@@ -40,6 +40,7 @@ class FtpReader
             }
         }
 
+        ftp_close($ftp);
         return $inventory;
     }
 
