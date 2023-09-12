@@ -16,17 +16,17 @@ it('can read csv files from FTP', function () {
     $reader = new FtpReader('tests', 'shah3ouX', 'localhost', '/ftp/tests', true);
 
     $records = $reader->readInventory();
-    expect($records)->toHaveCount(1);
-    expect($records[0]->Item)->toBe('1000/01');
-    expect($records[0]->Quantity)->toBe(10.0);
-    expect($records[0]->SupplierPieceNumber)->toBe('S1');
-    expect($records[0]->ATPieceNumber)->toBe('A1');
-    expect($records[0]->Location)->toBe('A-123');
+    expect($records)->toHaveCount(3);
+    expect($records[0]->Item)->toBe('10001-01');
+    expect($records[0]->Quantity)->toBe(25.625);
+    expect($records[0]->SupplierPieceNumber)->toBe('001398559');
+    expect($records[0]->ATPieceNumber)->toBe('PC5226398');
+    expect($records[0]->Location)->toBe('H-01-08');
     expect($records[0]->Warehouse->getValue())->toBe(Warehouse::GRAND_RAPIDS()->getValue());
-    expect($records[0]->UOM)->toBe('Yd');
-    expect($records[0]->LotNumber)->toBe('L1');
+    expect($records[0]->UOM)->toBe('Y');
+    expect($records[0]->LotNumber)->toBe('00336305/A');
     expect($records[0]->PieceStatus->getValue())->toBe(PieceStatus::AVAILABLE()->getValue());
-    expect($records[0]->Finish)->toBe('Alta');
-    expect($records[0]->DateReceived->format('Y-m-d'))->toBe('2023-01-01');
-    expect($records[0]->TPartnerField1)->toBe('12345');
+    expect($records[0]->Finish)->toBe('AT5');
+    expect($records[0]->DateReceived->format('Y-m-d'))->toBe('2022-10-05');
+    expect($records[0]->TPartnerField1)->toBe('11111');
 });

@@ -1,2 +1,5 @@
- Item,Quantity,SupplierPieceNumber,ATPieceNumber,Location,Warehouse,UOM,LotNumber,PieceStatus,Finish ,DateReceived,TPartnerField1
-1000/01,10,S1,A1,A-123,GRR,Yd,L1,A,Alta,2023-01-01,12345
+ Item,Quantity,SupplierPieceNumber, ATPieceNumber ,Location,Warehouse,UOM,LotNumber,PieceStatus , Finish,DateReceived,TPartnerField1
+----,--------,-------------------,-------------,--------,---------,---,---------,-----------,------,------------,--------------
+10001-01,25.625,001398559,PC5226398                ,H-01-08   ,GRR,Y,00336305/A               ,A,AT5            ,2022-10-05 14:27:00,11111
+10001-01,29.375,001398579,PC5226264                ,H-01-08   ,GRR,Y,00336305/A               ,A,AT5            ,2022-10-05 13:40:00,22222
+10001-01,37.000,001399592,PC5226248                ,H-01-08   ,GRR,Y,00336305/A               ,A,AT5            ,2022-10-05 13:41:00,33333

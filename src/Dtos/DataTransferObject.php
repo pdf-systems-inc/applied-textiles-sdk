@@ -21,13 +21,13 @@ class DataTransferObject
             }
 
             $propertyType = $property->getType()->getName();
+            $value = $args[$property->getName()];
 
             /*
              * If the property is an object type there are special considerations for instantiation
              */
             if (class_exists($propertyType) || interface_exists($propertyType)) {
                 $propertyClass = new ReflectionClass($propertyType);
-                $value = $args[$property->getName()];
 
                 if (is_object($value) && $propertyClass->isInstance($value)) {
                     // If the value was provided as an object of the correct type, use it directly with no alternations
@@ -35,15 +35,17 @@ class DataTransferObject
                 } else {
                     // Otherwise, the course of action we take depends on the type of object
                     if ($propertyClass->isSubclassOf(Enum::class)) {
-                        $this->{$property->getName()} = new $propertyType($args[$property->getName()]);
+                        $this->{$property->getName()} = new $propertyType($value);
                     } elseif ($propertyClass->implementsInterface(DateTimeInterface::class)) {
-                        $this->{$property->getName()} = new DateTimeImmutable($args[$property->getName()]);
+                        $this->{$property->getName()} = new DateTimeImmutable($value);
                     } else {
-                        $this->{$property->getName()} = $args[$property->getName()];
+                        $this->{$property->getName()} = $value;
                     }
                 }
+            } elseif (is_string($value)) {
+                $this->{$property->getName()} = trim($value);
             } else {
-                $this->{$property->getName()} = $args[$property->getName()];
+                $this->{$property->getName()} = $value;
             }
         }
     }
