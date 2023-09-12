@@ -2,6 +2,10 @@
 
 All notable changes to `Applied Textiles SDK` will be documented in this file.
 
+## 0.4.3 - 2023-09-12
+
+Apply latest spec changes from Applied Textiles to inventory CSV files
+
 ## 0.4.2 - 2023-09-12
 
 Remove any non-alphanumeric characters from files read via CSV
