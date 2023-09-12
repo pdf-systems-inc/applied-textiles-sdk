@@ -2,6 +2,10 @@
 
 All notable changes to `Applied Textiles SDK` will be documented in this file.
 
+## 0.4.2 - 2023-09-12
+
+Remove any non-alphanumeric characters from files read via CSV
+
 ## 0.4.1 - 2023-08-25
 
 Fixed issue writing transactions to default FTP directory
