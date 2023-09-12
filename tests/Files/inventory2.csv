@@ -1,0 +1,2 @@
+ Item,Quantity,SupplierPieceNumber,ATPieceNumber,Location,Warehouse,UOM,LotNumber,PieceStatus,Finish ,DateReceived,TPartnerField1
+1000/01,10,S1,A1,A-123,GRR,Yd,L1,A,Alta,2023-01-01,12345

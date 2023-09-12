@@ -30,6 +30,8 @@ class CsvReader implements Reader
             throw new InvalidFileException();
         }
 
+        // Remove any non-alphanumeric characters from the headers
+        $headers = array_map(fn (string $value) => preg_replace('/\W/', '', $value), $headers);
         $inventory = [];
 
         while (! empty($row = fgetcsv($fh))) {
